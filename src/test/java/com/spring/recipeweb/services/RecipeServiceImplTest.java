@@ -39,12 +39,14 @@ public class RecipeServiceImplTest {
 	@Test
 	public final void testGetRecipes() {
 		Recipe recipe = new Recipe();
-		HashSet recipeData = new HashSet();
+		HashSet<Recipe> recipeData = new HashSet<Recipe>();
 		recipeData.add(recipe);
+		
 		when(recipeService.getRecipes()).thenReturn(recipeData);
 		Set<Recipe> recipes = recipeService.getRecipes();
 		assertEquals(1, recipes.size());
 		verify(recipeRepository, times(1)).findAll();
 	}
-
+	
+	
 }

@@ -5,21 +5,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.spring.recipeweb.repository.CategoryRepository;
-import com.spring.recipeweb.repository.UnitOfMeasureRepository;
 import com.spring.recipeweb.services.RecipeService;
 
 @Controller
 public class IndexController {
 	
-	@Autowired
-	RecipeService recipeService;
+	private final RecipeService recipeService;
 	
-	@Autowired
-	CategoryRepository categoryRepository;
-	
-	@Autowired
-	UnitOfMeasureRepository unitOfMeasureRepository;
+	public IndexController(RecipeService recipeService){
+		this.recipeService= recipeService; 
+	}
 	
 	@RequestMapping("/index")
 	public String getIndexPage(Model model){
