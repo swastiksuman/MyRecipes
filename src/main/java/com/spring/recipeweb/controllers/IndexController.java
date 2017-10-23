@@ -18,6 +18,7 @@ public class IndexController {
 	
 	@RequestMapping("/index")
 	public String getIndexPage(Model model){
+		System.out.println(recipeService.getRecipes().size());
 		model.addAttribute("recipes", recipeService.getRecipes());
 		return "index";
 	}
