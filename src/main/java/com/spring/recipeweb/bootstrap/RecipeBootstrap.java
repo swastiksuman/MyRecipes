@@ -9,6 +9,8 @@ import java.util.Set;
 
 import javax.transaction.Transactional;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -24,6 +26,7 @@ import com.spring.recipeweb.repository.CategoryRepository;
 import com.spring.recipeweb.repository.RecipeRepository;
 import com.spring.recipeweb.repository.UnitOfMeasureRepository;
 
+@Slf4j()
 @Component
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 	
@@ -36,12 +39,6 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 	@Autowired
 	private UnitOfMeasureRepository unitOfMeasureRepository;
 
-    /*public RecipeBootstrap(CategoryRepository categoryRepository, RecipeRepository recipeRepository, UnitOfMeasureRepository unitOfMeasureRepository) {
-        this.categoryRepository = categoryRepository;
-        this.recipeRepository = recipeRepository;
-        this.unitOfMeasureRepository = unitOfMeasureRepository;
-    }*/
-
     @Override
     @Transactional
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -49,7 +46,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
     }
 
     private List<Recipe> getRecipes() {
-
+    	log.debug("Kuch Bhi Log");
         List<Recipe> recipes = new ArrayList<>(2);
 
         //get UOMs
@@ -197,7 +194,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
                 "Read more: http://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/#ixzz4jvu7Q0MJ");
 
         tacosRecipe.setNotes(tacoNotes);
-
+        
         tacosRecipe.addIngredient(new Ingredient("Ancho Chili Powder", new BigDecimal(2), tableSpoonUom));
         tacosRecipe.addIngredient(new Ingredient("Dried Oregano", new BigDecimal(1), teapoonUom));
         tacosRecipe.addIngredient(new Ingredient("Dried Cumin", new BigDecimal(1), teapoonUom));
@@ -225,7 +222,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         tacosRecipe.setUrl("http://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/");
         tacosRecipe.setServings(4);
         tacosRecipe.setSource("Simply Recipes");
-
+        
         recipes.add(tacosRecipe);
         return recipes;
     }
