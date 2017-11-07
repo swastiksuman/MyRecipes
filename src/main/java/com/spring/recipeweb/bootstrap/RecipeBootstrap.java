@@ -42,7 +42,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
     @Override
     @Transactional
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        recipeRepository.saveAll(getRecipes());
+        //recipeRepository.saveAll(getRecipes());
     }
 
     private List<Recipe> getRecipes() {
