@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:mysql://myrecipedb.c8qckzofhgxq.ap-south-1.rds.amazonaws.com:3306/MyRecipeDev
+    username: root
+    password: elnino#09
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database: mysql
+    show-sql: true
