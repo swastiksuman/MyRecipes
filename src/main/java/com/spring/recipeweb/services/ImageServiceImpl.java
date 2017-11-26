@@ -37,15 +37,11 @@ public class ImageServiceImpl implements ImageService {
 			for (byte b : file.getBytes()) {
 				byteObjects[i++] = b;
 			}
-
 			recipe.setImage(byteObjects);
-
 			recipeRepository.save(recipe);
 		} catch (IOException e) {
 			// todo handle better
-			log.error("Error occurred", e);
-
-			e.printStackTrace();
+			log.error("Error occurred", e.toString());
 		}
 	}
 }

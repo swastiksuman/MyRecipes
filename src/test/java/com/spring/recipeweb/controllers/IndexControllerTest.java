@@ -40,16 +40,14 @@ public class IndexControllerTest {
 
 	@After
 	public void tearDown() throws Exception {
-
+		
 	}
 
 	@Test
 	public void testMockMVC() throws Exception {
 		MockMvc mockMvc = MockMvcBuilders.standaloneSetup(indexController)
 				.build();
-
-		mockMvc.perform(get("/index")).andExpect(status().isOk())
-				.andExpect(view().name("index"));
+		mockMvc.perform(get("/")).andExpect(status().isOk()).andExpect(view().name("index"));
 	}
 
 	@Test
@@ -57,7 +55,6 @@ public class IndexControllerTest {
 		Recipe recipe = new Recipe();
 		HashSet<Recipe> recipeData = new HashSet<Recipe>();
 		recipeData.add(recipe);
-
 		when(recipeService.getRecipes()).thenReturn(recipeData);
 		ArgumentCaptor<Set<Recipe>> argumentCaptor = ArgumentCaptor
 				.forClass(Set.class);
